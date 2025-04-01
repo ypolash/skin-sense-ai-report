@@ -1,10 +1,36 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { AnalysisProcess } from '@/components/AnalysisProcess';
+import { PaymentModal } from '@/components/PaymentModal';
+import { useToast } from '@/hooks/use-toast';
 
 const Analyze = () => {
+  const [showPaymentModal, setShowPaymentModal] = useState(false);
+  const [trialUsed, setTrialUsed] = useState(false);
+  const { toast } = useToast();
+
+  const handleAnalysisRequest = () => {
+    setShowPaymentModal(true);
+  };
+
+  const handleFreeTrial = () => {
+    setTrialUsed(true);
+    toast({
+      title: "Free Trial Activated",
+      description: "You can now analyze one image for free",
+    });
+  };
+
+  const handlePayment = () => {
+    toast({
+      title: "Payment Demo",
+      description: "In a real app, this would redirect to a payment gateway for 10 BDT",
+    });
+    // In a real app, this would redirect to a payment page
+  };
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
@@ -16,7 +42,17 @@ const Analyze = () => {
               Upload a photo to receive a detailed analysis of your skin condition and personalized recommendations.
             </p>
             
-            <AnalysisProcess />
+            <AnalysisProcess 
+              onAnalysisRequest={handleAnalysisRequest}
+              trialActivated={trialUsed}
+            />
+            
+            <PaymentModal 
+              open={showPaymentModal} 
+              onOpenChange={setShowPaymentModal}
+              onFreeTrial={handleFreeTrial}
+              onPay={handlePayment}
+            />
           </div>
         </div>
       </main>

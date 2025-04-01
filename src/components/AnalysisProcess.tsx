@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { ImageUploader } from './ImageUploader';
@@ -6,6 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Upload, Check, Loader2 } from 'lucide-react';
 import { AnalysisResult } from './AnalysisResult';
 import { useToast } from '@/hooks/use-toast';
+import { analyzeSkinImage } from '@/services/apiService';
 
 // Skin types
 const skinTypes = ["Normal", "Dry", "Oily", "Combination", "Sensitive"];
@@ -96,7 +96,7 @@ export const AnalysisProcess: React.FC<AnalysisProcessProps> = ({
     setAnalysisComplete(false);
   };
 
-  const startAnalysis = () => {
+  const startAnalysis = async () => {
     if (!selectedImage) {
       toast({
         title: "No image selected",
@@ -113,18 +113,36 @@ export const AnalysisProcess: React.FC<AnalysisProcessProps> = ({
 
     setIsAnalyzing(true);
     
-    // Simulate API call with a timeout
-    setTimeout(() => {
-      // Generate dynamic analysis result
-      const result = generateRandomAnalysisResult();
-      setAnalysisResult(result);
+    try {
+      // If we're in a real environment with the backend set up
+      if (process.env.NODE_ENV === 'production') {
+        // Call the API service to analyze the image
+        const result = await analyzeSkinImage(selectedImage);
+        setAnalysisResult(result);
+      } else {
+        // For development/demo: simulate API call with a timeout
+        setTimeout(() => {
+          // Generate dynamic analysis result
+          const result = generateRandomAnalysisResult();
+          setAnalysisResult(result);
+          setIsAnalyzing(false);
+          setAnalysisComplete(true);
+          toast({
+            title: "Analysis Complete",
+            description: "Your skin analysis is ready to view",
+          });
+        }, 3000);
+      }
+    } catch (error) {
+      toast({
+        title: "Analysis Failed",
+        description: error instanceof Error ? error.message : "Unknown error occurred",
+        variant: "destructive"
+      });
+    } finally {
       setIsAnalyzing(false);
       setAnalysisComplete(true);
-      toast({
-        title: "Analysis Complete",
-        description: "Your skin analysis is ready to view",
-      });
-    }, 3000);
+    }
   };
 
   // Generate random but realistic analysis result
