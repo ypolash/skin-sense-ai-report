@@ -12,6 +12,7 @@ interface AnalysisResultProps {
     sensitivity: number;
     concerns: {
       name: string;
+      emoji?: string;
       severity: number;
       description: string;
     }[];
@@ -52,9 +53,12 @@ export const AnalysisResult: React.FC<AnalysisResultProps> = ({ result }) => {
             <h3 className="font-medium text-lg mb-3">Skin Concerns</h3>
             <div className="space-y-4">
               {result.concerns.map((concern, index) => (
-                <div key={index}>
-                  <div className="flex justify-between mb-1">
-                    <span className="font-medium">{concern.name}</span>
+                <div key={index} className="bg-muted/30 p-4 rounded-lg">
+                  <div className="flex justify-between mb-1 items-center">
+                    <span className="font-medium flex items-center">
+                      {concern.emoji && <span className="mr-2 text-xl">{concern.emoji}</span>}
+                      {concern.name}
+                    </span>
                     <span className="text-sm text-muted-foreground">
                       {concern.severity < 30 ? 'Mild' : concern.severity < 70 ? 'Moderate' : 'Severe'}
                     </span>
@@ -70,9 +74,9 @@ export const AnalysisResult: React.FC<AnalysisResultProps> = ({ result }) => {
 
           <div>
             <h3 className="font-medium text-lg mb-3">Recommendations</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-3">
               {result.recommendations.map((recommendation, index) => (
-                <li key={index} className="flex items-start">
+                <li key={index} className="flex items-start bg-primary/5 p-3 rounded-lg">
                   <div className="bg-primary/10 text-primary rounded-full w-5 h-5 flex items-center justify-center mr-2 mt-0.5">
                     <span className="text-xs">{index + 1}</span>
                   </div>

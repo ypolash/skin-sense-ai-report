@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 
 export const Footer = () => {
   return (
-    <footer className="bg-muted/50 py-10 border-t border-border">
+    <footer className="bg-muted/50 py-10 border-t border-border relative z-10">
       <div className="container mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">
               <div className="bg-gradient-to-r from-primary to-accent rounded-full w-8 h-8 flex items-center justify-center">
-                <span className="text-white font-bold text-lg">S</span>
+                <span className="text-white font-bold text-lg">D</span>
               </div>
-              <span className="font-bold text-xl">SkinAnalyzerPro</span>
+              <span className="font-bold text-xl">Dr Skin</span>
             </div>
             <p className="text-muted-foreground max-w-xs">
               Using advanced AI technology to analyze skin conditions and provide personalized recommendations.
@@ -25,11 +25,6 @@ export const Footer = () => {
               <li>
                 <Link to="/" className="text-muted-foreground hover:text-foreground transition-colors">
                   Home
-                </Link>
-              </li>
-              <li>
-                <Link to="/analyze" className="text-muted-foreground hover:text-foreground transition-colors">
-                  Analyze Your Skin
                 </Link>
               </li>
               <li>
@@ -58,7 +53,7 @@ export const Footer = () => {
         </div>
         
         <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-          <p>© {new Date().getFullYear()} SkinAnalyzerPro. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} Dr Skin. Developed by Yeasin Arafath Polash. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -9,17 +9,14 @@ export const Header = () => {
       <div className="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
         <Link to="/" className="flex items-center space-x-2">
           <div className="bg-gradient-to-r from-primary to-accent rounded-full w-8 h-8 flex items-center justify-center">
-            <span className="text-white font-bold text-lg">S</span>
+            <span className="text-white font-bold text-lg">D</span>
           </div>
-          <span className="font-bold text-xl">SkinAnalyzerPro</span>
+          <span className="font-bold text-xl">Dr Skin</span>
         </Link>
         
         <nav className="hidden md:flex items-center space-x-6">
           <Link to="/" className="text-foreground/80 hover:text-foreground transition-colors">
             Home
-          </Link>
-          <Link to="/analyze" className="text-foreground/80 hover:text-foreground transition-colors">
-            Analyze
           </Link>
           <Link to="/about" className="text-foreground/80 hover:text-foreground transition-colors">
             About
@@ -27,9 +24,9 @@ export const Header = () => {
         </nav>
         
         <div className="flex items-center space-x-4">
-          <Link to="/analyze">
+          <Link to="/">
             <Button className="bg-primary hover:bg-primary/90 text-white">
-              Start Analysis
+              Analyze Now
             </Button>
           </Link>
         </div>

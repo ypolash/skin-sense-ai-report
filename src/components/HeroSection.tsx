@@ -7,21 +7,21 @@ export const HeroSection = () => {
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-r from-skin-50 to-skin-100 opacity-50"></div>
-      <div className="relative container mx-auto px-4 sm:px-6 py-20 lg:py-32">
+      <div className="relative container mx-auto px-4 sm:px-6 py-16 md:py-24">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-              <span className="gradient-text">AI-Powered</span> Skin Analysis for Personalized Care
+              <span className="gradient-text">Dr Skin</span> AI-Powered Analysis for Healthier Skin
             </h1>
             <p className="text-lg text-muted-foreground max-w-lg">
               Upload a photo and receive detailed analysis of your skin condition, with personalized recommendations tailored just for you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/analyze">
+              <a href="#analyze-section">
                 <Button className="bg-primary hover:bg-primary/90 text-white px-8 py-6 text-lg">
                   Analyze My Skin
                 </Button>
-              </Link>
+              </a>
               <Link to="/about">
                 <Button variant="outline" className="px-8 py-6 text-lg">
                   Learn More
